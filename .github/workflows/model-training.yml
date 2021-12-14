@@ -5,13 +5,22 @@ on:
 
 jobs:
   train-model:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"
 
-      # - name: install dependencies
-      # run: pip -install -r requirements.txt
+      - run: pip install -r requirements.txt
+        name: Install requirements
+
+      - run: .src/train.py
+        name: Train model
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ModelPickle
+          path: data/models/model.pickle
