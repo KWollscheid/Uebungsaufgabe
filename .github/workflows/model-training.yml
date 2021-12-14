@@ -1,0 +1,17 @@
+name: model-training
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: install dependencies
+        run: pip -install -r requirements.txt
