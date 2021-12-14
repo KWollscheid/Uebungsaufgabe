@@ -21,7 +21,6 @@ jobs:
         name: Train model
 
       - uses: actions/upload-artifact@v2
-        name: "Upload_Model.pickle"
         with:
           name: ModelPickle
           path: data/models/model.pickle
